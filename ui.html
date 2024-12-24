@@ -1,0 +1,153 @@
+<div class="main ">
+
+  <div class="title ">
+    <P> Session Marker </p>
+  </div>
+
+  <!-- <div class="info">
+
+   
+    
+    <div class=" data-line">       
+        <div class="name">
+          <p> Page </p>
+        </div>
+         <div class="page-name data-point">
+          <p> .. </p>
+        </div>
+    </div>
+
+    <div class=" data-line">       
+        <div class="name">
+          <p> Zoom </p>
+        </div>
+         <div class="page-name data-point ">
+          <p> .. </p>
+        </div>
+    </div>
+
+  </div> -->
+
+  <div class="btns">
+    <!-- <p>Count: <input id="count" type="number" value="5"></p> -->
+    <button id="create"> Drop Marker </button>
+    <!-- <button id="cancel">Cancel</button> -->
+    <button id="nav">Return</button>
+  </div>
+
+</div>
+
+<script>
+
+document.getElementById('create').onclick = () => {
+
+  parent.postMessage({ pluginMessage: { type: 'create-shapes' } }, '*')
+}
+
+document.addEventListener('keydown', (event) => {
+  if (event.shiftKey && event.key === 'U') {
+     parent.postMessage({ pluginMessage: { type: 'create-shapes' } }, '*')
+  }
+}); 
+
+
+// document.getElementById('cancel').onclick = () => {
+//   parent.postMessage({ pluginMessage: { type: 'cancel' } }, '*')
+// }
+
+document.getElementById('nav').onclick = () => {
+  parent.postMessage({ pluginMessage: { type: 'nav' } }, '*')
+}
+
+</script>
+
+
+<style>
+
+  *{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+
+  .title{
+    background-color: rgba(0, 0, 0, 0.821);
+    color: white;
+    padding: 6px 15px;
+    border-radius: 4px;
+    display: none;
+  }
+
+  .main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-items: space-between;
+    justify-content: space-between;
+    gap: 10px;
+    height: 100%;
+    background-color: rgb(255, 255, 255);
+
+    padding: 10px;
+  }
+
+  .data-point{
+
+    width: 100%;
+  }
+
+  .info{
+
+    width: 100%;
+    padding: 20px 0px;
+
+  }
+
+  .btns{
+    display: flex ;
+    flex-direction: column;
+    width: 100%;
+    gap: 10px;
+    height: 100%;
+  }
+
+  .data-line{
+    padding: 4px 0px;
+    display: flex;
+    font-size: 14px;
+    line-height: 20px;
+    border-top: 1px solid black;
+    width: 100%;
+  }
+
+  .data-line, .name{
+      width: 100%;
+    
+  }
+
+
+
+  body {
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 0;
+    margin: 0;
+    background: #000;
+  }
+
+  button{
+    width: 100%;
+    height: 150px;
+    border-radius: 4px;
+    border: none;
+    transition: all 0.1s ease;
+    background-color: rgb(229, 228, 222);
+  }
+
+  button:hover{
+    background-color: rgb(0, 0, 0);
+    color: white;
+   
+  }
+
+</style>
