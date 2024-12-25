@@ -83,33 +83,46 @@ async function navigateToViewport() {
     savedViewport = saveViewportLocation();
 
     // Step 1: Create a frame
+
+    const bg = figma.createFrame();
+    bg.resize(100, 100); // Set the size of the frame
+    bg.name = 'Session Marker';
+    bg.cornerRadius = 100;
+    bg.x = figma.viewport.center.x - 50; // Center the frame
+    bg.y = figma.viewport.center.y - 50;
+    bg.fills = [{ type: "SOLID", color: { r: 1, g: 1, b: 1 }, opacity:0.8 }];
+
+
+
     const frame = figma.createFrame();
     frame.resize(100, 100); // Set the size of the frame
     frame.name = '1';
     frame.cornerRadius = 100;
-    frame.x = figma.viewport.center.x - 50; // Center the frame
-    frame.y = figma.viewport.center.y - 50;
-    frame.fills = [{ type: "SOLID", color: { r: 0.2, g: 0.2, b: 0.9 }, opacity:0.3 }];
+    frame.x = - 0; // Center the frame
+    frame.y = - 0;
+    frame.fills = [{ type: "SOLID", color: { r: 0, g: 0, b: 1 }, opacity:0.5 }];
     // test
 
     const frame2 = figma.createFrame();
     frame2.resize(70, 70); // Set the size of the frame
     frame2.name = '2';
     frame2.cornerRadius = 100;
-    frame2.x = 10; // Center the frame
-    frame2.y = 10;
-    frame2.fills = [{ type: "SOLID", color: { r: 0.4, g: 0.1, b: 0.9 }, opacity:0.3 }];
+    frame2.x = 15; // Center the frame
+    frame2.y = 15;
+    frame2.fills = [{ type: "SOLID", color: { r: 0, g: 0, b: 1 }, opacity:0.2}];
     // test
 
     const frame3 = figma.createFrame();
-    frame2.resize( 40 , 40); // Set the size of the frame
-    frame2.name = '3';
-    frame2.cornerRadius = 100;
-    frame2.x = 10; // Center the frame
-    frame2.y = 10;
-    frame2.fills = [{ type: "SOLID", color: { r: 0, g: 1, b: 0 }, opacity:0.3 }];
+    frame3.resize( 40 , 40); // Set the size of the frame
+    frame3.name = '3';
+    frame3.cornerRadius = 100;
+    frame3.x = 15; // Center the frame
+    frame3.y = 15;
+    frame3.fills = [{ type: "SOLID", color: { r: 0, g: 0, b: 1 }, opacity:0.2 }];
     // test
 
+    
+    bg.appendChild(frame)
     frame.appendChild(frame2)
     frame2.appendChild(frame3)
     
