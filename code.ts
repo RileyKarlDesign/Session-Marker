@@ -58,38 +58,62 @@ async function navigateToViewport() {
 
 
 
-  function navValues(center:any,  pg:any, z:any) {
-      console.log( ' getting values ')
-      let navigateablePage:any;
+  async function navValues(center:any,  pg:any, z:any) {
+      const pages = figma.root.children;
+                let navigateablePage;
 
-      pages.forEach((page, index) => {
-      if(page.id === pg.id) {
-        navigateablePage = page;
-        figma.setCurrentPageAsync( navigateablePage );
-        figma.viewport.center = center;
-        figma.viewport.zoom = z;
-      }
-  });
+      pages.forEach((page) => {
+          if (page.id === pg.id) {
+               navigateablePage = page;
+          }
+          });
+
+          await figma.setCurrentPageAsync(navigateablePage as any  )
+              .then(() => {
+                        figma.viewport.center = center;
+                        figma.viewport.zoom = z;
+          })
+  };
   }
 
 
 
-
-
-}
-
   if (msg.type === 'create-shapes') {
 
     savedViewport = saveViewportLocation();
+
     // Step 1: Create a frame
     const frame = figma.createFrame();
     frame.resize(100, 100); // Set the size of the frame
-    frame.name = 'Session Marker';
-    frame.cornerRadius = 40;
+    frame.name = '1';
+    frame.cornerRadius = 100;
     frame.x = figma.viewport.center.x - 50; // Center the frame
     frame.y = figma.viewport.center.y - 50;
-    frame.fills = [{ type: "SOLID", color: { r: 0.2, g: 0.2, b: 0.9 } }];
+    frame.fills = [{ type: "SOLID", color: { r: 0.2, g: 0.2, b: 0.9 }, opacity:0.3 }];
     // test
+
+    const frame2 = figma.createFrame();
+    frame2.resize(70, 70); // Set the size of the frame
+    frame2.name = '2';
+    frame2.cornerRadius = 100;
+    frame2.x = 10; // Center the frame
+    frame2.y = 10;
+    frame2.fills = [{ type: "SOLID", color: { r: 0.4, g: 0.1, b: 0.9 }, opacity:0.3 }];
+    // test
+
+    const frame3 = figma.createFrame();
+    frame2.resize( 40 , 40); // Set the size of the frame
+    frame2.name = '3';
+    frame2.cornerRadius = 100;
+    frame2.x = 10; // Center the frame
+    frame2.y = 10;
+    frame2.fills = [{ type: "SOLID", color: { r: 0, g: 1, b: 0 }, opacity:0.3 }];
+    // test
+
+    frame.appendChild(frame2)
+    frame2.appendChild(frame3)
+    
+
 
    
 
